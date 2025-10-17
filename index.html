@@ -4,70 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown to HTML Converter</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css" rel="stylesheet">
+    <title>Markdown Viewer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
     <style>
         body {
             padding: 20px;
             background-color: #f8f9fa;
         }
-        #loading {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-        }
-        #markdown-output {
-            border: 1px solid #ced4da;
+        .tab-content {
+            border: 1px solid #dee2e6;
             border-radius: 0.25rem;
             padding: 15px;
             background-color: white;
         }
+        #word-count {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            resize: none;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center">Markdown to HTML Converter</h1>
-        <textarea id="markdown-input" class="form-control" rows="10" placeholder="Paste your markdown here..."></textarea>
-        <button id="convert-button" class="btn btn-primary mt-3">Convert</button>
-        <div id="loading" class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+
+<div class="container">
+    <h1 class="text-center">Markdown Viewer</h1>
+    <ul class="nav nav-tabs" id="markdown-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="source-tab" data-bs-toggle="tab" href="#markdown-source" role="tab" aria-controls="markdown-source" aria-selected="true">Markdown Source</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="output-tab" data-bs-toggle="tab" href="#markdown-output" role="tab" aria-controls="markdown-output" aria-selected="false">Rendered Output</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="markdown-content">
+        <div class="tab-pane fade show active" id="markdown-source" role="tabpanel" aria-labelledby="source-tab">
+            <textarea id="markdown-input" placeholder="Type your markdown here..." oninput="updateOutput();"></textarea>
         </div>
-        <h3 class="mt-4">Output:</h3>
-        <div id="markdown-output"></div>
+        <div class="tab-pane fade" id="markdown-output" role="tabpanel" aria-labelledby="output-tab">
+            <div id="rendered-output" class="markdown-preview"></div>
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-    <script>
-        document.getElementById('convert-button').addEventListener('click', function () {
-            const markdownInput = document.getElementById('markdown-input').value;
-            const outputDiv = document.getElementById('markdown-output');
-            const loadingSpinner = document.getElementById('loading');
+    <div id="word-count">Word Count: <span id="count">0</span></div>
+</div>
 
-            if (!markdownInput) {
-                outputDiv.innerHTML = '<div class="alert alert-warning">Please enter markdown content.</div>';
-                return;
-            }
+<script>
+    function updateOutput() {
+        const input = document.getElementById('markdown-input').value;
+        const output = document.getElementById('rendered-output');
+        const wordCount = document.getElementById('count');
 
-            loadingSpinner.style.display = 'block';
-            outputDiv.innerHTML = ''; // Clear previous output
+        // Simple word count calculation
+        const words = input.trim().split(/\s+/).filter(word => word.length > 0);
+        wordCount.textContent = words.length;
 
-            try {
-                const htmlContent = marked(markdownInput);
-                outputDiv.innerHTML = htmlContent;
-                highlightjs.highlightAll(); // Apply syntax highlighting
-            } catch (error) {
-                outputDiv.innerHTML = '<div class="alert alert-danger">Error converting markdown: ' + error.message + '</div>';
-            } finally {
-                loadingSpinner.style.display = 'none';
-            }
-        });
+        // Render Markdown to HTML
+        output.innerHTML = marked(input);
+    }
 
-        // Load initial markdown content from the attachment
-        const initialMarkdown = atob("IyBUZXN0IE1hcmtkb3duCgpUaGlzIGlzIGEgKip0ZXN0KiogbWFya2Rvd24gZmlsZSB3aXRoIH..."); // Truncated for brevity
-        document.getElementById('markdown-input').value = initialMarkdown;
-    </script>
+    // Error handling for rendering markdown
+    try {
+        // Ensure marked is available
+        if (typeof marked !== 'function') {
+            throw new Error('Marked library is not available.');
+        }
+    } catch (error) {
+        console.error(error);
+        document.getElementById('rendered-output').textContent = 'Error rendering markdown.';
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 ```
