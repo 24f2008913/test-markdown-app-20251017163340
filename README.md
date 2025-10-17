@@ -2,14 +2,13 @@
 # Test Markdown App
 
 ## Description
-The **Test Markdown App** is a web application designed to enhance the experience of working with Markdown by providing a dual-view interface. Users can seamlessly switch between rendered HTML and the original Markdown source using tabbed navigation. Additionally, the app features a live word count display that updates dynamically as users type, making it an efficient tool for writers, developers, and content creators.
+The **Test Markdown App** is a web application designed to enhance the user experience of writing and viewing Markdown. This application allows users to seamlessly switch between rendered HTML and the original Markdown source using tabs. Additionally, it features a live word count display that updates dynamically as the user types, providing immediate feedback on the content being created.
 
 ## Features
-- **Tabbed Navigation**: Switch between rendered HTML and Markdown source easily.
-- **Live Word Count**: A real-time word count display that updates as you type.
-- **Responsive Design**: Optimized for various devices and screen sizes.
-- **User-Friendly Interface**: Intuitive layout for easy navigation and usage.
-- **Open Source**: Available for contributions and modifications.
+- **Tab Switching**: Users can easily toggle between the rendered HTML view and the original Markdown source.
+- **Dynamic Word Count**: A live word count that updates in real-time as the user types in the Markdown editor.
+- **Responsive Design**: The application is designed to be user-friendly and responsive across different devices.
+- **Simple Interface**: Intuitive layout for a smooth user experience.
 
 ## Setup Instructions
 To set up the Test Markdown App locally, follow these steps:
@@ -18,36 +17,34 @@ To set up the Test Markdown App locally, follow these steps:
    ```bash
    git clone https://github.com/24f2008913/test-markdown-app-20251017163340.git
    ```
-
 2. **Navigate to the Project Directory**:
    ```bash
    cd test-markdown-app-20251017163340
    ```
-
 3. **Open the Application**:
-   You can open the `index.html` file in your web browser to view the application.
-
-4. **Dependencies**:
-   This project does not have any external dependencies. Ensure you have a modern web browser to run the app.
+   You can open the `index.html` file directly in your web browser, or you can set up a local server using tools like [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) for a better development experience.
 
 ## Usage Guide
-1. **Switching Tabs**: Click on the "Markdown Source" tab to edit your Markdown text. Click on the "Rendered Output" tab to view the formatted HTML.
-2. **Typing in Markdown**: As you type in the Markdown source tab, the rendered output will update automatically in the corresponding tab.
-3. **Word Count**: The word count is displayed in real-time at the bottom of the app. It will reflect the number of words currently in the Markdown source.
+1. Open the application in your web browser.
+2. Use the text area to input your Markdown content.
+3. Switch between the **Markdown Source** and **Rendered HTML** tabs to see the changes.
+4. The live word count will display the number of words in the Markdown source, updating as you type.
 
 ## Code Explanation
-The application is built using HTML, CSS, and JavaScript. Here are key components of the code:
+The application is built using HTML, CSS, and JavaScript. Here’s a brief overview of the key components:
 
-- **HTML Structure**: The markup includes sections for the tabs, the Markdown input area, the rendered output area, and the word count display.
-- **CSS Styles**: Basic styling is provided to ensure a clean and responsive layout.
+- **HTML Structure**: The main layout consists of a text area for input, two tabs for switching views, and a section for displaying the live word count.
+- **CSS Styling**: The application is styled to provide a clean and modern look, ensuring a pleasant user experience.
 - **JavaScript Functionality**:
-  - **Tab Switching**: Event listeners are used to handle tab clicks and toggle visibility between the Markdown source and rendered output.
-  - **Markdown Parsing**: A Markdown parser is utilized to convert Markdown text into HTML dynamically.
-  - **Word Count Logic**: A function calculates the word count based on the input in the Markdown source and updates the display accordingly.
+  - **Tab Switching**: JavaScript functions handle the toggling between the Markdown source and rendered HTML.
+  - **Live Word Count**: An event listener on the text area captures input changes and calculates the word count dynamically.
 
-## License Information
+For a detailed look at the code, please refer to the [repository](https://github.com/24f2008913/test-markdown-app-20251017163340).
+
+## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## Live Demo
-Experience the Test Markdown App live at: [Live Demo](https://24f2008913.github.io/test-markdown-app-20251017163340/)
+---
+
+For a live demonstration of the application, visit: [Live Demo](https://24f2008913.github.io/test-markdown-app-20251017163340/)
 ```
