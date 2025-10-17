@@ -1,110 +1,102 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Editor</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
     <style>
         body {
             padding: 20px;
             background-color: #f8f9fa;
         }
+
         .tab-content {
-            margin-top: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            padding: 15px;
+            background: white;
         }
+
         #markdown-output {
-            border: 1px solid #ced4da;
-            padding: 10px;
-            background-color: white;
             min-height: 200px;
             overflow-y: auto;
         }
+
         #markdown-source {
-            border: 1px solid #ced4da;
-            padding: 10px;
-            background-color: white;
             min-height: 200px;
             overflow-y: auto;
-            font-family: monospace;
         }
-        #loading {
-            display: none;
-            font-style: italic;
-            color: gray;
+
+        .word-count {
+            font-weight: bold;
         }
     </style>
 </head>
+
 <body>
-
-<div class="container">
-    <h1 class="text-center">Markdown Editor</h1>
-    <ul class="nav nav-tabs" id="markdown-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" id="tab-source" href="#!" onclick="showSource()">Markdown Source</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="tab-output" href="#!" onclick="showOutput()">Rendered Output</a>
-        </li>
-    </ul>
-
-    <div id="word-count" class="alert alert-info" role="alert">
-        Word Count: <span id="count">0</span>
+    <div class="container">
+        <h1 class="text-center">Markdown Editor</h1>
+        <div class="mb-3">
+            <textarea id="markdown-input" class="form-control" rows="5" placeholder="Type your markdown here..."></textarea>
+        </div>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between">
+                <div class="word-count">Word Count: <span id="word-count">0</span></div>
+            </div>
+        </div>
+        <ul class="nav nav-tabs" id="markdown-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="source-tab" href="#" onclick="showSource()">Markdown Source</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="output-tab" href="#" onclick="showOutput()">Rendered Output</a>
+            </li>
+        </ul>
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="markdown-source">
+                <pre id="source-display"></pre>
+            </div>
+            <div class="tab-pane fade" id="markdown-output">
+                <div id="output-display"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="tab-content">
-        <div id="markdown-source" class="tab-pane active">
-            <textarea id="markdown-input" class="form-control" rows="10" oninput="updateOutput()"></textarea>
-        </div>
-        <div id="markdown-output" class="tab-pane">
-            <div id="rendered-output"></div>
-        </div>
-    </div>
+    <script>
+        const markdownInput = document.getElementById('markdown-input');
+        const sourceDisplay = document.getElementById('source-display');
+        const outputDisplay = document.getElementById('output-display');
+        const wordCountDisplay = document.getElementById('word-count');
 
-    <div id="loading">Loading...</div>
-</div>
+        function updateMarkdown() {
+            const markdownText = markdownInput.value;
+            sourceDisplay.textContent = markdownText;
+            outputDisplay.innerHTML = marked(markdownText);
+            updateWordCount(markdownText);
+        }
 
-<script>
-    function showSource() {
-        document.getElementById('markdown-source').classList.add('active');
-        document.getElementById('markdown-output').classList.remove('active');
-        document.getElementById('tab-source').classList.add('active');
-        document.getElementById('tab-output').classList.remove('active');
-    }
+        function updateWordCount(text) {
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            wordCountDisplay.textContent = words.length;
+        }
 
-    function showOutput() {
-        document.getElementById('markdown-source').classList.remove('active');
-        document.getElementById('markdown-output').classList.add('active');
-        document.getElementById('tab-source').classList.remove('active');
-        document.getElementById('tab-output').classList.add('active');
-    }
+        function showSource() {
+            document.getElementById('markdown-source').classList.add('show', 'active');
+            document.getElementById('markdown-output').classList.remove('show', 'active');
+        }
 
-    function updateOutput() {
-        const input = document.getElementById('markdown-input').value;
-        document.getElementById('loading').style.display = 'block';
-        setTimeout(() => {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('rendered-output').innerHTML = marked(input);
-            updateWordCount(input);
-        }, 300);
-    }
+        function showOutput() {
+            document.getElementById('markdown-output').classList.add('show', 'active');
+            document.getElementById('markdown-source').classList.remove('show', 'active');
+        }
 
-    function updateWordCount(text) {
-        const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-        document.getElementById('count').textContent = wordCount;
-    }
-
-    // Load the Marked.js library for converting Markdown to HTML
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/marked/2.1.3/marked.min.js';
-    script.onload = () => {
-        // Initial call to update output on page load
-        updateOutput();
-    };
-    document.head.appendChild(script);
-</script>
-
+        markdownInput.addEventListener('input', updateMarkdown);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.1.3/marked.min.js"></script>
 </body>
+
 </html>
 ```
