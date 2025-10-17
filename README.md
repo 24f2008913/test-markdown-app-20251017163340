@@ -2,13 +2,14 @@
 # Test Markdown App
 
 ## Description
-The Test Markdown App is a web application designed to enhance the experience of writing and previewing Markdown content. This application allows users to switch seamlessly between the rendered HTML output and the original Markdown source, as well as provides a live word count display that updates dynamically as users type. It is an ideal tool for writers, developers, and anyone who frequently works with Markdown.
+The **Test Markdown App** is a web application designed to enhance the experience of working with Markdown by providing a dual-view interface. Users can seamlessly switch between rendered HTML and the original Markdown source using tabbed navigation. Additionally, the app features a live word count display that updates dynamically as users type, making it an efficient tool for writers, developers, and content creators.
 
 ## Features
-- **Tab Switching**: Easily toggle between the rendered HTML view and the original Markdown source.
-- **Live Word Count**: A dynamic word count that updates in real-time as you edit your Markdown content.
-- **Responsive Design**: The application is built to be responsive and user-friendly across various devices.
-- **Open Source**: The project is hosted on GitHub, allowing for collaboration and contributions from the community.
+- **Tabbed Navigation**: Switch between rendered HTML and Markdown source easily.
+- **Live Word Count**: A real-time word count display that updates as you type.
+- **Responsive Design**: Optimized for various devices and screen sizes.
+- **User-Friendly Interface**: Intuitive layout for easy navigation and usage.
+- **Open Source**: Available for contributions and modifications.
 
 ## Setup Instructions
 To set up the Test Markdown App locally, follow these steps:
@@ -17,36 +18,36 @@ To set up the Test Markdown App locally, follow these steps:
    ```bash
    git clone https://github.com/24f2008913/test-markdown-app-20251017163340.git
    ```
-   
+
 2. **Navigate to the Project Directory**:
    ```bash
    cd test-markdown-app-20251017163340
    ```
 
 3. **Open the Application**:
-   Open `index.html` in your preferred web browser to view the application.
+   You can open the `index.html` file in your web browser to view the application.
 
-4. **Optional - Install Dependencies**:
-   If you wish to contribute to the development of the app, you may need to install any dependencies specified (if applicable).
+4. **Dependencies**:
+   This project does not have any external dependencies. Ensure you have a modern web browser to run the app.
 
 ## Usage Guide
-1. **Writing Markdown**: Start typing in the Markdown source tab. The application supports standard Markdown syntax.
-2. **Viewing Output**: Switch to the rendered HTML tab to see how your Markdown will appear when rendered.
-3. **Word Count**: Keep an eye on the word count display, which updates automatically as you type.
+1. **Switching Tabs**: Click on the "Markdown Source" tab to edit your Markdown text. Click on the "Rendered Output" tab to view the formatted HTML.
+2. **Typing in Markdown**: As you type in the Markdown source tab, the rendered output will update automatically in the corresponding tab.
+3. **Word Count**: The word count is displayed in real-time at the bottom of the app. It will reflect the number of words currently in the Markdown source.
 
 ## Code Explanation
-The Test Markdown App is built using HTML, CSS, and JavaScript. Key components include:
+The application is built using HTML, CSS, and JavaScript. Here are key components of the code:
 
-- **HTML Structure**: The application is structured with semantic HTML elements for accessibility and SEO.
-- **JavaScript Functionality**: 
-  - **Tab Switching Logic**: JavaScript is used to manage the visibility of the Markdown source and rendered output tabs.
-  - **Markdown Rendering**: A library (e.g., marked.js) is utilized to convert Markdown into HTML.
-  - **Word Count Calculation**: A simple function counts the words in the Markdown input and updates the display in real-time.
+- **HTML Structure**: The markup includes sections for the tabs, the Markdown input area, the rendered output area, and the word count display.
+- **CSS Styles**: Basic styling is provided to ensure a clean and responsive layout.
+- **JavaScript Functionality**:
+  - **Tab Switching**: Event listeners are used to handle tab clicks and toggle visibility between the Markdown source and rendered output.
+  - **Markdown Parsing**: A Markdown parser is utilized to convert Markdown text into HTML dynamically.
+  - **Word Count Logic**: A function calculates the word count based on the input in the Markdown source and updates the display accordingly.
 
 ## License Information
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
----
-
-For more information, visit the [GitHub Repository](https://github.com/24f2008913/test-markdown-app-20251017163340) or view the live demo [here](https://24f2008913.github.io/test-markdown-app-20251017163340/).
+## Live Demo
+Experience the Test Markdown App live at: [Live Demo](https://24f2008913.github.io/test-markdown-app-20251017163340/)
 ```
